@@ -46,9 +46,11 @@ public class LinkedList<T> {
         size++;
     }
 
-    public void removeFirst() {
+    public T removeFirst() {
         if(isEmpty())
             throw new NoSuchElementException();
+
+        T value = (T) first.value;
 
         if(hasOnlyOneNode()) {
             first = null;
@@ -60,11 +62,14 @@ public class LinkedList<T> {
         }
 
         size--;
+        return value;
     }
 
-    public void removeLast() {
+    public T removeLast() {
         if(isEmpty())
             throw new NoSuchElementException();
+
+        T value = (T) last.value;
 
         if(hasOnlyOneNode()) {
             first = null;
@@ -76,6 +81,7 @@ public class LinkedList<T> {
         }
 
         size--;
+        return value;
     }
 
     public <T> boolean contains(T value) {
@@ -118,15 +124,15 @@ public class LinkedList<T> {
         last.next = null;
     }
 
-    public Node getFirst() {
-        return first;
+    public T getFirst() {
+        return (T) first.value;
     }
 
-    public Node getLast() {
-        return last;
+    public T getLast() {
+        return (T) last.value;
     }
 
-    public Node getNth(int pos) {
+    public T getNth(int pos) {
         if(isEmpty() || pos <= 0 || pos > size)
             return null;
 
@@ -134,10 +140,10 @@ public class LinkedList<T> {
         for(int i = 1; i < pos; i++)
             current = current.next;
 
-        return current;
+        return (T) current.value;
     }
 
-    public Node getNthFromEnd(int pos) {
+    public T getNthFromEnd(int pos) {
         if(isEmpty() || pos <= 0 || pos > size)
             return null;
 
@@ -151,7 +157,7 @@ public class LinkedList<T> {
             current = current.next;
         }
 
-        return current;
+        return (T) current.value;
     }
 
     public int size() {
